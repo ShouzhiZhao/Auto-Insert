@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto-insert"
+version = "0.1.0"
+description = "A stage-structured task template, execution contract, and development harness for agent-written robot insertion programs"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24,<3"]
+
+[project.urls]
+Repository = "https://github.com/ShouzhiZhao/Auto-Insert"
+
+[tool.setuptools]
+py-modules = ["main", "rollout"]
+
+[tool.setuptools.packages.find]
+include = ["pick*", "place*", "experiments*"]
