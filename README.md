@@ -4,7 +4,7 @@
 
 When general-purpose coding agents develop contact-rich manipulation software from an empty directory over hours of robot rollouts, they tend to collapse approach, alignment, contact, and recovery into a single monolithic script, rely on brittle hand-tuned image thresholds, and scatter self-imposed runtime assertions that abort viable trajectories.
 
-**Auto-Insert** (~1,700 lines of Python) provides a concise, transparent codebase for stereo-guided pick-and-insert tasks that both coding agents and human engineers can read, audit, and tune stage by stage. It consists of three parts:
+**Auto-Insert** provides a concise, transparent Python codebase for stereo-guided pick-and-insert tasks that both coding agents and human engineers can read, audit, and tune stage by stage. It consists of three parts:
 
 1. **Stage-Structured Task Template** (`pick/`, `place/`, `main.py`, `rollout.py`) — Expresses pick and place as five plain, sequential stage methods per phase (~200 lines per motion file) without a state-machine DSL, decoupling occlusion-tolerant stereo perception, taught local Jacobian calibration, and visual or force-guarded motion.
 2. **Execution Contract** ([`AGENTS.md`](AGENTS.md)) — Engineering rules loaded at session startup that direct perception toward GPU-appropriate pretrained vision models and visible rigid landmarks near occluded sockets, prohibit unrequested runtime abort gates, treat transient missed detections as recoverable waits, and require phase-specific force-signal validation before closing a force loop.
@@ -283,3 +283,16 @@ python -m experiments.report "$experiment_dir"
 ```
 
 Summary reports compute the empirical success rate $S / (S + F)$ over assessed trials alongside explicit counts of `unknown` and `not_evaluated` runs so evaluation coverage $(S + F) / N$ stays transparent across iterations.
+
+---
+
+## Citation
+
+```bibtex
+@misc{zhao2026autoinsert,
+  title   = {Auto-Insert: A Task Template and Development Harness for Agent-Written Robot Insertion Programs},
+  author  = {Zhao, Shouzhi and Fan, Haoqiang},
+  year    = {2026},
+  url     = {https://github.com/ShouzhiZhao/Auto-Insert}
+}
+```
