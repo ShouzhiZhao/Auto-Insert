@@ -1,4 +1,4 @@
-"""Record physical assessments from an independent evaluator or a human observer."""
+"""Record physical assessments from an automated check, evaluator agent, or human observer."""
 import argparse
 import json
 from pathlib import Path

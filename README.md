@@ -234,7 +234,7 @@ with RolloutLog(pick, "pick", label="contact-tuning") as log:
 
 ![Auto-Insert development harness loop](assets/harness.svg)
 
-On physical and simulated robots, a zero exit code only indicates that the Python process finished—not that the parts are physically mated. The harness tracks iterative agent engineering at three nested levels (`experiment` → `iteration` → `trial`) and keeps **execution status** (`running`, `completed`, `failed`, `interrupted`) strictly independent of **physical outcome** (`success`, `failure`, `unknown`, or `not_evaluated`).
+On physical and simulated robots, a zero exit code only indicates that the Python process finished—not that the parts are physically mated. The harness tracks iterative agent engineering at three nested levels (`experiment` → `iteration` → `trial`) and keeps **execution status** (`running`, `completed`, `failed`, `interrupted`) strictly independent of **physical outcome** (`success`, `failure`, `unknown`, or `not_evaluated`), which can be recorded by an automated sensor/geometry script, an independent vision-language evaluator agent, or a human observer.
 
 ### CLI Workflow
 
@@ -271,12 +271,12 @@ python -m experiments.run finish "$iteration_dir" \
 trial_dir=$(python -m experiments.run trial "$iteration_dir" -- python main.py)
 ```
 
-5. **Record an independent physical assessment** with optional measurements and evidence images, then generate the experiment summary report:
+5. **Record an independent physical assessment** (via an automated check, evaluator agent, or human observer) with optional measurements and evidence images, then generate the experiment summary report:
 
 ```bash
 python -m experiments.evaluate "$trial_dir" \
   --outcome success \
-  --evaluator human:operator \
+  --evaluator agent:coordinator \
   --evidence inspection.jpg
 
 python -m experiments.report "$experiment_dir"
